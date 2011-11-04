@@ -1,5 +1,11 @@
+# revision 23089
+# category Package
+# catalog-ctan undef
+# catalog-date undef
+# catalog-license undef
+# catalog-version undef
 Name:		texlive-mptopdf
-Version:	20111102
+Version:	20111103
 Release:	1
 Summary:	mpost to PDF, native MetaPost graphics inclusion
 Group:		Publishing
@@ -51,6 +57,7 @@ found on CTAN in macros/pdftex/graphics.
 %{_texmfdistdir}/tex/generic/context/mptopdf.tex
 %doc %{_mandir}/man1/mptopdf.1*
 %doc %{_texmfdir}/doc/man/man1/mptopdf.man1.pdf
+%doc %{_tlpkgobjdir}/*.tlpobj
 
 #-----------------------------------------------------------------------
 %prep
@@ -67,3 +74,5 @@ mkdir -p %{buildroot}%{_datadir}
 cp -fpar texmf texmf-dist %{buildroot}%{_datadir}
 mkdir -p %{buildroot}%{_mandir}/man1
 mv %{buildroot}%{_texmfdir}/doc/man/man1/*.1 %{buildroot}%{_mandir}/man1
+mkdir -p %{buildroot}%{_tlpkgobjdir}
+cp -fpa tlpkg/tlpobj/*.tlpobj %{buildroot}%{_tlpkgobjdir}
