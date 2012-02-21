@@ -5,8 +5,8 @@
 # catalog-license undef
 # catalog-version undef
 Name:		texlive-mptopdf
-Version:	20111103
-Release:	2
+Version:	20120221
+Release:	1
 Summary:	mpost to PDF, native MetaPost graphics inclusion
 Group:		Publishing
 URL:		http://tug.org/texlive
@@ -17,6 +17,7 @@ BuildArch:	noarch
 BuildRequires:	texlive-tlpkg
 Requires(pre):	texlive-tlpkg
 Requires(post):	texlive-kpathsea
+Requires(post):	texlive-tetex
 Provides:	texlive-mptopdf.bin = %{EVRD}
 
 %description
@@ -46,6 +47,7 @@ found on CTAN in macros/pdftex/graphics.
 %{_texmfdistdir}/tex/context/base/supp-pdf.mkii
 %{_texmfdistdir}/tex/context/base/syst-tex.mkii
 %{_texmfdistdir}/tex/generic/context/mptopdf.tex
+%_texmf_fmtutil_d/mptopdf
 %doc %{_mandir}/man1/mptopdf.1*
 %doc %{_texmfdir}/doc/man/man1/mptopdf.man1.pdf
 
@@ -64,3 +66,9 @@ mkdir -p %{buildroot}%{_datadir}
 cp -fpar texmf texmf-dist %{buildroot}%{_datadir}
 mkdir -p %{buildroot}%{_mandir}/man1
 mv %{buildroot}%{_texmfdir}/doc/man/man1/*.1 %{buildroot}%{_mandir}/man1
+mkdir -p %{buildroot}%{_texmf_fmtutil_d}
+cat > %{buildroot}%{_texmf_fmtutil_d}/mptopdf <<EOF
+#
+# from mptopdf:
+mptopdf pdftex - -translate-file=cp227.tcx mptopdf.tex
+EOF
