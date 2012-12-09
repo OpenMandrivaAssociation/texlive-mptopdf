@@ -72,3 +72,25 @@ cat > %{buildroot}%{_texmf_fmtutil_d}/mptopdf <<EOF
 # from mptopdf:
 mptopdf pdftex - -translate-file=cp227.tcx mptopdf.tex
 EOF
+
+
+%changelog
+* Wed Aug 08 2012 Paulo Andrade <pcpa@mandriva.com.br> 20120808-1
++ Revision: 812633
+- Update to latest release.
+
+* Tue Feb 21 2012 Paulo Andrade <pcpa@mandriva.com.br> 20120221-1
++ Revision: 778458
+- Rebuild after tlpobj2spec.pl bug correction.
+
+* Wed Jan 04 2012 Paulo Andrade <pcpa@mandriva.com.br> 20111103-2
++ Revision: 754155
+- Rebuild to reduce used resources
+
+* Sat Nov 05 2011 Paulo Andrade <pcpa@mandriva.com.br> 20111103-1
++ Revision: 719072
+- texlive-mptopdf
+- texlive-mptopdf
+- texlive-mptopdf
+- texlive-mptopdf
+
