@@ -1,11 +1,11 @@
-# revision 26689
+# revision 29751
 # category Package
 # catalog-ctan undef
 # catalog-date undef
 # catalog-license undef
 # catalog-version undef
 Name:		texlive-mptopdf
-Version:	20120808
+Version:	20131010
 Release:	1
 Summary:	mpost to PDF, native MetaPost graphics inclusion
 Group:		Publishing
@@ -42,14 +42,16 @@ found on CTAN in macros/pdftex/graphics.
 %files
 %{_bindir}/mptopdf
 %{_texmfdistdir}/scripts/context/perl/mptopdf.pl
+%{_texmfdistdir}/scripts/context/stubs/mswin/mptopdf.exe
 %{_texmfdistdir}/tex/context/base/supp-mis.mkii
 %{_texmfdistdir}/tex/context/base/supp-mpe.mkii
 %{_texmfdistdir}/tex/context/base/supp-pdf.mkii
 %{_texmfdistdir}/tex/context/base/syst-tex.mkii
 %{_texmfdistdir}/tex/generic/context/mptopdf/mptopdf.tex
 %_texmf_fmtutil_d/mptopdf
+%doc %{_texmfdistdir}/doc/context/scripts/mkii/mptopdf.man
 %doc %{_mandir}/man1/mptopdf.1*
-%doc %{_texmfdir}/doc/man/man1/mptopdf.man1.pdf
+%doc %{_texmfdistdir}/doc/man/man1/mptopdf.man1.pdf
 
 #-----------------------------------------------------------------------
 %prep
@@ -63,34 +65,12 @@ pushd %{buildroot}%{_bindir}
     ln -sf %{_texmfdistdir}/scripts/context/perl/mptopdf.pl mptopdf
 popd
 mkdir -p %{buildroot}%{_datadir}
-cp -fpar texmf texmf-dist %{buildroot}%{_datadir}
+cp -fpar texmf-dist %{buildroot}%{_datadir}
 mkdir -p %{buildroot}%{_mandir}/man1
-mv %{buildroot}%{_texmfdir}/doc/man/man1/*.1 %{buildroot}%{_mandir}/man1
+mv %{buildroot}%{_texmfdistdir}/doc/man/man1/*.1 %{buildroot}%{_mandir}/man1
 mkdir -p %{buildroot}%{_texmf_fmtutil_d}
 cat > %{buildroot}%{_texmf_fmtutil_d}/mptopdf <<EOF
 #
 # from mptopdf:
 mptopdf pdftex - -translate-file=cp227.tcx mptopdf.tex
 EOF
-
-
-%changelog
-* Wed Aug 08 2012 Paulo Andrade <pcpa@mandriva.com.br> 20120808-1
-+ Revision: 812633
-- Update to latest release.
-
-* Tue Feb 21 2012 Paulo Andrade <pcpa@mandriva.com.br> 20120221-1
-+ Revision: 778458
-- Rebuild after tlpobj2spec.pl bug correction.
-
-* Wed Jan 04 2012 Paulo Andrade <pcpa@mandriva.com.br> 20111103-2
-+ Revision: 754155
-- Rebuild to reduce used resources
-
-* Sat Nov 05 2011 Paulo Andrade <pcpa@mandriva.com.br> 20111103-1
-+ Revision: 719072
-- texlive-mptopdf
-- texlive-mptopdf
-- texlive-mptopdf
-- texlive-mptopdf
-
