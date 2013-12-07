@@ -6,7 +6,7 @@
 # catalog-version undef
 Name:		texlive-mptopdf
 Version:	20131010
-Release:	3
+Release:	4
 Summary:	mpost to PDF, native MetaPost graphics inclusion
 Group:		Publishing
 URL:		http://tug.org/texlive
