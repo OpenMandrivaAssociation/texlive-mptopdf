@@ -1,12 +1,6 @@
-# revision 34192
-# category Package
-# catalog-ctan undef
-# catalog-date undef
-# catalog-license undef
-# catalog-version undef
 Name:		texlive-mptopdf
-Version:	20140620
-Release:	4
+Version:	20171104
+Release:	1
 Summary:	mpost to PDF, native MetaPost graphics inclusion
 Group:		Publishing
 URL:		http://tug.org/texlive
@@ -43,11 +37,8 @@ found on CTAN in macros/pdftex/graphics.
 %{_bindir}/mptopdf
 %{_texmfdistdir}/scripts/context/perl/mptopdf.pl
 %{_texmfdistdir}/scripts/context/stubs/mswin/mptopdf.exe
-%{_texmfdistdir}/tex/context/base/supp-mis.mkii
-%{_texmfdistdir}/tex/context/base/supp-mpe.mkii
-%{_texmfdistdir}/tex/context/base/supp-pdf.mkii
-%{_texmfdistdir}/tex/context/base/syst-tex.mkii
-%{_texmfdistdir}/tex/generic/context/mptopdf/mptopdf.tex
+%{_texmfdistdir}/tex/context/base/mkii
+%{_texmfdistdir}/tex/generic/context/mptopdf
 %_texmf_fmtutil_d/mptopdf
 %doc %{_texmfdistdir}/doc/context/scripts/mkii/mptopdf.man
 %doc %{_mandir}/man1/mptopdf.1*
