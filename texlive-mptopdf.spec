@@ -1,12 +1,12 @@
 Name:		texlive-mptopdf
-Version:	20190228
+Version:	61520
 Release:	1
 Summary:	mpost to PDF, native MetaPost graphics inclusion
 Group:		Publishing
 URL:		http://tug.org/texlive
 License:	http://www.tug.org/texlive/LICENSE.TL
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/mptopdf.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/mptopdf.doc.tar.xz
+Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/mptopdf.r%{version}.tar.xz
+Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/mptopdf.doc.r%{version}.tar.xz
 BuildArch:	noarch
 BuildRequires:	texlive-tlpkg
 Requires(pre):	texlive-tlpkg
@@ -25,12 +25,12 @@ users who do not install the rest of ConTeXt.  This can be
 found on CTAN in macros/pdftex/graphics.
 
 %post
-    %{_sbindir}/texlive.post
+%{_sbindir}/texlive.post
 
 %postun
-    if [ $1 -eq 0 ]; then
+if [ $1 -eq 0 ]; then
 	%{_sbindir}/texlive.post
-    fi
+fi
 
 #-----------------------------------------------------------------------
 %files
@@ -46,14 +46,14 @@ found on CTAN in macros/pdftex/graphics.
 
 #-----------------------------------------------------------------------
 %prep
-%setup -c -a0 -a1
+%autosetup -p1 -c -a1
 
 %build
 
 %install
 mkdir -p %{buildroot}%{_bindir}
 pushd %{buildroot}%{_bindir}
-    ln -sf %{_texmfdistdir}/scripts/context/perl/mptopdf.pl mptopdf
+ln -sf %{_texmfdistdir}/scripts/context/perl/mptopdf.pl mptopdf
 popd
 mkdir -p %{buildroot}%{_datadir}
 cp -fpar texmf-dist %{buildroot}%{_datadir}
