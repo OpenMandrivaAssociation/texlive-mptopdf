@@ -1,6 +1,6 @@
 Name:		texlive-mptopdf
 Version:	61520
-Release:	1
+Release:	2
 Summary:	mpost to PDF, native MetaPost graphics inclusion
 Group:		Publishing
 URL:		http://tug.org/texlive
