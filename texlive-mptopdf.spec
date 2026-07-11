@@ -1,67 +1,30 @@
-Name:		texlive-mptopdf
-Version:	61520
-Release:	2
+%global tl_name mptopdf
+%global tl_revision 79616
+
+Name:		texlive-%{tl_name}
+Version:	%{tl_revision}
+Release:	1
 Summary:	mpost to PDF, native MetaPost graphics inclusion
 Group:		Publishing
-URL:		https://tug.org/texlive
-License:	http://www.tug.org/texlive/LICENSE.TL
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/mptopdf.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/mptopdf.doc.r%{version}.tar.xz
+URL:		https://www.ctan.org/tex-archive/graphics/metapost/contrib/tools/mptopdf
+License:	gpl
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/mptopdf.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/mptopdf.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
-BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
-Requires(post):	texlive-tetex
-Provides:	texlive-mptopdf.bin = %{EVRD}
+BuildSystem:	texlive
+Requires:	texlive(mptopdf.bin)
+Requires:	texlive(pdftex)
+Requires:	texlive(plain)
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-The mptopdf script does standalone conversion from mpost to
-PDF, using the supp-* and syst-* files.  They also allow native
-MetaPost graphics inclusion in LaTeX (via pdftex.def) and
-ConTeXt.  They can be used independently of the rest of
-ConTeXt, yet are maintained as part of it.  So in TeX Live we
-pull them out to this separate package for the benefit of LaTeX
-users who do not install the rest of ConTeXt.  This can be
-found on CTAN in macros/pdftex/graphics.
+The mptopdf script does standalone conversion from mpost to PDF, using
+the supp-* and syst-* files. They also allow native MetaPost graphics
+inclusion in LaTeX (via pdftex.def) and ConTeXt. They can be used
+independently of the rest of ConTeXt, yet are maintained as part of it.
+So in TeX Live we pull them out to this separate package for the benefit
+of LaTeX users who do not install the rest of ConTeXt. This can be found
+on CTAN in macros/pdftex/graphics. The files originally come from the
+ConTeXt distribution. TL uses the repackaging from
+https://github.com/gucci-on-fleek/context-packaging.
 
-%post
-%{_sbindir}/texlive.post
-
-%postun
-if [ $1 -eq 0 ]; then
-	%{_sbindir}/texlive.post
-fi
-
-#-----------------------------------------------------------------------
-%files
-%{_bindir}/mptopdf
-%{_texmfdistdir}/scripts/context/perl/mptopdf.pl
-%{_texmfdistdir}/scripts/context/stubs/mswin/mptopdf.exe
-%{_texmfdistdir}/tex/context/base/mkii
-%{_texmfdistdir}/tex/generic/context/mptopdf
-%_texmf_fmtutil_d/mptopdf
-%doc %{_texmfdistdir}/doc/context/scripts/mkii/mptopdf.man
-%doc %{_mandir}/man1/mptopdf.1*
-%doc %{_texmfdistdir}/doc/man/man1/mptopdf.man1.pdf
-
-#-----------------------------------------------------------------------
-%prep
-%autosetup -p1 -c -a1
-
-%build
-
-%install
-mkdir -p %{buildroot}%{_bindir}
-pushd %{buildroot}%{_bindir}
-ln -sf %{_texmfdistdir}/scripts/context/perl/mptopdf.pl mptopdf
-popd
-mkdir -p %{buildroot}%{_datadir}
-cp -fpar texmf-dist %{buildroot}%{_datadir}
-mkdir -p %{buildroot}%{_mandir}/man1
-mv %{buildroot}%{_texmfdistdir}/doc/man/man1/*.1 %{buildroot}%{_mandir}/man1
-mkdir -p %{buildroot}%{_texmf_fmtutil_d}
-cat > %{buildroot}%{_texmf_fmtutil_d}/mptopdf <<EOF
-#
-# from mptopdf:
-mptopdf pdftex - -translate-file=cp227.tcx mptopdf.tex
-EOF
