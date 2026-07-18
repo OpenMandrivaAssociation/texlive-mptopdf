@@ -1,5 +1,6 @@
 %global tl_name mptopdf
 %global tl_revision 79616
+%global tl_bin_links mptopdf:%{_texmfdistdir}/scripts/context/perl/mptopdf.pl
 
 Name:		texlive-%{tl_name}
 Version:	%{tl_revision}
@@ -16,6 +17,8 @@ Requires:	texlive(mptopdf.bin)
 Requires:	texlive(pdftex)
 Requires:	texlive(plain)
 Provides:	texlive(%{tl_name}) = %{tl_revision}
+Provides:	texlive(%{tl_name}.bin) = %{tl_revision}
+Provides:	texlive-%{tl_name}.bin = %{EVRD}
 
 %description
 The mptopdf script does standalone conversion from mpost to PDF, using
