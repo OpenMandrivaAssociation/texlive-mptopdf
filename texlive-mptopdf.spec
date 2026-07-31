@@ -1,5 +1,5 @@
 %global tl_name mptopdf
-%global tl_revision 79616
+%global tl_revision 79834
 %global tl_bin_links mptopdf:%{_texmfdistdir}/scripts/context/perl/mptopdf.pl
 
 Name:		texlive-%{tl_name}
